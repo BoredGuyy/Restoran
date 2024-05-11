@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model categorie {
+  ID  Int    @id @default(autoincrement())
+  Nom String
+}
+
+model Restaurant {
+  ID          Int       @id @default(autoincrement())
+  Nom         String
+  ADRESSE     String
+  Telephone   Int
+  Repas       Repas[]
+  Employer    Employer[]
+  Client      Client[]
+}
+
+model Categorie {
+  ID          Int       @id @default(autoincrement())
+  Nom         String
+  Repas       Repas[]
+}
+
+model Repas {
+  ID            Int       @id @default(autoincrement())
+  Nom           String
+  DESCRIPTION   String
+  PRIX          Int
+  IMAGE         String
+  ID_Categorie  Int
+  ID_Restaurant Int
+  Categorie     Categorie @relation(fields: [ID_Categorie], references: [ID])
+  Restaurant    Restaurant @relation(fields: [ID_Restaurant], references: [ID])
+}
+
+model Employer {
+  ID            Int       @id @default(autoincrement())
+  Nom           String
+  Poste         String
+  Salaire       Int
+  ID_Restaurant Int
+  Restaurant    Restaurant @relation(fields: [ID_Restaurant], references: [ID])
+}
+
+model Client {
+  ID            Int       @id @default(autoincrement())
+  Nom           String
+  TELEPHONE     Int
+  EMAIL         String
+  ID_Restaurant Int
+  Restaurant    Restaurant @relation(fields: [ID_Restaurant], references: [ID])
+}

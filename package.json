@@ -1,0 +1,20 @@
+{
+  "name": "restoran",
+  "version": "1.0.0",
+  "description": "La chaîne \"Restoran\" vise à renforcer sa présence sur le marché de la restauration en créant un site web pour améliorer sa stratégie marketing de ses restaurants à travers le pays. Ce site permettra aux clients de consulter les repas, de réserver une table, et regroupera toutes les informations essentielles pour les futurs clients afin de les inciter à venir déguster sa cuisine !",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.13.0",
+    "express": "^4.19.2",
+    "prisma": "^5.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
