@@ -7,16 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model categorie {
-  ID  Int    @id @default(autoincrement())
-  Nom String
-}
-
 model Restaurant {
   ID          Int       @id @default(autoincrement())
   Nom         String
   ADRESSE     String
   Telephone   Int
+  Email       String
   Repas       Repas[]
   Employer    Employer[]
   Client      Client[]
@@ -51,8 +47,6 @@ model Employer {
 
 model Client {
   ID            Int       @id @default(autoincrement())
-  Nom           String
-  TELEPHONE     Int
   EMAIL         String
   ID_Restaurant Int
   Restaurant    Restaurant @relation(fields: [ID_Restaurant], references: [ID])

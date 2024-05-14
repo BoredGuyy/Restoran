@@ -5,7 +5,7 @@ const path = require('path')
 
 const getContactPage = async (req, res) => {
     try {
-        await res.sendFile(path.join(__dirname, '../views/contact.html'))
+        await res.render('contact')
     } catch (error) {
         console.error('error', error)
         throw error

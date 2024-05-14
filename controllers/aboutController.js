@@ -5,7 +5,7 @@ const path = require('path')
 
 const getAboutPage = async (req, res) => {
     try {
-        await res.sendFile(path.join(__dirname, '../views/about.html'))
+        await res.render('about')
     } catch (error) {
         console.error('error', error)
         throw error
