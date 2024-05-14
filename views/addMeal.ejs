@@ -53,7 +53,7 @@
   </head>
   <body>
     <h1>Ajouter un Repas</h1>
-    <form action="" method="POST">
+    <form action="/addMeal" method="POST">
       <label for="nom">Nom</label>
       <input type="text" name="nom" required />
       <br />
@@ -68,9 +68,7 @@
       <br />
       <br />
       <label for="id_categorie">Categorie</label>
-      <select name="id_categorie" required>
-        <option value="">-- Choisir une Categorie --</option>
-      </select>
+      <input type="number" name="id_categorie" required />
       <br />
       <button type="submit">Ajouter un Repas</button>
     </form>
