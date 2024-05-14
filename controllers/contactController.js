@@ -5,7 +5,10 @@ const path = require('path')
 
 const getContactPage = async (req, res) => {
     try {
-        await res.render('contact')
+        const info = await prisma.restaurant.findUnique({
+            where: { ID: 1 },
+        });
+        res.render('contact', {info})
     } catch (error) {
         console.error('error', error)
         throw error
