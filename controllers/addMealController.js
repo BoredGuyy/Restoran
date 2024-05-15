@@ -1,8 +1,6 @@
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 
-const path = require('path')
-
 const addMealPage = async (req, res) => {
     try {
         await res.render('addMeal');
@@ -22,7 +20,7 @@ const newMeal = async (req, res) => {
                 Nom: req.body.nom,
                 DESCRIPTION: req.body.description,
                 PRIX: parseInt(req.body.prix),
-                IMAGE: req.body.url_image,
+                IMAGE: req.file.path, 
                 ID_Categorie: parseInt(req.body.id_categorie),
                 ID_Restaurant
             },
