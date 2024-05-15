@@ -47,7 +47,7 @@ model Employer {
 
 model Client {
   ID            Int       @id @default(autoincrement())
-  EMAIL         String
+  EMAIL         String    @unique(map: "EMAIL")
   ID_Restaurant Int
   Restaurant    Restaurant @relation(fields: [ID_Restaurant], references: [ID])
 }

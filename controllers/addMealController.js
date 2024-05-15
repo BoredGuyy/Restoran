@@ -15,12 +15,14 @@ const addMealPage = async (req, res) => {
 const newMeal = async (req, res) => {
     try {
         const ID_Restaurant = 1;
+        // Removing 'public' from the beginning of the path
+        const imagePath = req.file.path.replace('public\\', '');
         const meal = await prisma.repas.create({
             data: {
                 Nom: req.body.nom,
                 DESCRIPTION: req.body.description,
                 PRIX: parseInt(req.body.prix),
-                IMAGE: req.file.path, 
+                IMAGE: imagePath,
                 ID_Categorie: parseInt(req.body.id_categorie),
                 ID_Restaurant
             },
@@ -29,12 +31,12 @@ const newMeal = async (req, res) => {
     } catch (error) {
         console.log(req.body);
         console.error('Error adding meal:', error);
-        // Respond with an error message
         res.status(500).send('Error adding meal');
     } finally {
         await prisma.$disconnect();
     }
 }
+
 
 
 module.exports = {addMealPage, newMeal}

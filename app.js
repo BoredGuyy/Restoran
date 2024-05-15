@@ -7,17 +7,18 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, 'views'));
 
 const homeRoute = require('./routes/homeRoute')
 const aboutRoute = require('./routes/aboutRoute')
 const contactRoute = require('./routes/contactRoute')
 const addMealRoute = require('./routes/addMealRoute')
+const newLetterRoute = require('./routes/newLetterRoute')
 
 app.use('/', homeRoute);
 app.use('/about', aboutRoute);
 app.use('/contact', contactRoute);
-app.use('/addMeal', addMealRoute)
+app.use('/addMeal', addMealRoute);
+app.use('/newsletter', newLetterRoute);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
