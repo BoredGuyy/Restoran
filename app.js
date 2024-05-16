@@ -5,6 +5,8 @@ const path = require('path');
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+const logger = require('./middlewares/logger')
+
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
@@ -14,6 +16,7 @@ const contactRoute = require('./routes/contactRoute')
 const addMealRoute = require('./routes/addMealRoute')
 const newLetterRoute = require('./routes/newLetterRoute')
 
+app.use(logger);
 app.use('/', homeRoute);
 app.use('/about', aboutRoute);
 app.use('/contact', contactRoute);
