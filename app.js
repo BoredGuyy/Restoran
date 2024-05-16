@@ -2,10 +2,11 @@ const express = require('express')
 const app = express()
 const path = require('path');
 
+const logger = require('./middlewares/logger')
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const logger = require('./middlewares/logger')
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -22,6 +23,17 @@ app.use('/about', aboutRoute);
 app.use('/contact', contactRoute);
 app.use('/addMeal', addMealRoute);
 app.use('/newsletter', newLetterRoute);
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Something went wrong!' });
+});
+
+app.all('*', (req, res, next) => {
+    res.status(400).json({success: false, msg: 'wrong url path'})
+    console.log(`${req.originalUrl} doesnt exist`)
+    next()
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

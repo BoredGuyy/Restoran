@@ -1,6 +1,8 @@
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 
+const Joi = require('joi');
+
 const addMealPage = async (req, res) => {
     try {
         await res.render('addMeal');
@@ -12,8 +14,20 @@ const addMealPage = async (req, res) => {
     }
 }
 
+const mealSchema = Joi.object({
+    nom: Joi.string().required(),
+    description: Joi.string().required(),
+    prix: Joi.number().integer().min(0).required(),
+    id_categorie: Joi.number().integer().min(1).required(),
+});
+
 const newMeal = async (req, res) => {
     try {
+        const { error, value } = mealSchema.validate(req.body);
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+        }
+
         const ID_Restaurant = 1;
         // Removing 'public' from the beginning of the path
         const imagePath = req.file.path.replace('public\\', '');
