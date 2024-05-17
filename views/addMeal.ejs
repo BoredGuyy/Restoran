@@ -55,20 +55,20 @@
     <h1>Ajouter un Repas</h1>
     <form action="/addMeal" method="POST" enctype="multipart/form-data">
       <label for="nom">Nom</label>
-      <input type="text" name="nom" required />
+      <input type="text" name="nom" />
       <br />
       <label for="description">Description</label>
-      <textarea name="description" required></textarea>
+      <textarea name="description" ></textarea>
       <br />
       <label for="prix">Prix</label>
-      <input type="number" name="prix" required />
+      <input type="number" name="prix"  />
       <br />
       <label for="url_image">Image</label>
-      <input type="file" name="url_image" accept="image/*" required />
+      <input type="file" name="url_image" accept="image/*"  />
       <br />
       <br />
       <label for="id_categorie">Categorie</label>
-      <input type="number" name="id_categorie" required />
+      <input type="number" name="id_categorie"  />
       <br />
       <button type="submit">Ajouter un Repas</button>
     </form>
